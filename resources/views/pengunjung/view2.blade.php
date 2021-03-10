@@ -2,11 +2,11 @@
 
 @section('title', 'Pengunjung Kemenag')
 @section('container')
-	@if (session('status'))
+	<!-- @if (session('status'))
 	    <div class="alert alert-success">
 	        {{ session('status') }}
 	    </div>
-	@endif
+	@endif -->
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-4">

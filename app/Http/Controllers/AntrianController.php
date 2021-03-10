@@ -64,6 +64,7 @@ class AntrianController extends Controller
     public function create()
     {
         $a = DB::table('antrians')->get();
+        $nomor_lama = 0;
 
         if($a == null)
         {
@@ -88,7 +89,7 @@ class AntrianController extends Controller
                 'nomor' => $nomor
             ]);
         }
-        return redirect('/pengunjung')->with('status', 'Silahkan Menunggu Antrian '.$nomor);
+        return view('pengunjung/print', ['nomor' => $nomor]);
     }
 
     public function reset()
