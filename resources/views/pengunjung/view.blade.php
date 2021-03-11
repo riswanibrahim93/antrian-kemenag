@@ -21,12 +21,12 @@
 		    </div>
 		    <div class="col-sm-4">
 		    	<div class="row">
-		    		<h3>Admin 1</h3>
-		    		<a href="/antrianA1">Panggil</a>
+		    		
+		    		<a href="/antrianA1"><h3>Admin 1</h3></a>
 		    	</div>
 		    	<div class="row">
-		    		<h3>Admin 2</h3>
-		    		<a href="/antrianA2">Panggil</a>
+		    		
+		    		<a href="/antrianA2"><h3>Admin 2</h3></a>
 		    	</div>
 		    </div>
 	  	</div>

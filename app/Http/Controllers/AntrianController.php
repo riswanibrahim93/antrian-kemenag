@@ -46,14 +46,14 @@ class AntrianController extends Controller
     {
         $nomorTampil = app('App\Http\Controllers\AntrianController')->index();
         $jml = app('App\Http\Controllers\AntrianController')->jml_antrian();
-        return view('pengunjung/view2', ['nomor' => $nomorTampil , 'admin' => 'Admin 1', 'jml_antrian' => $jml]);
+        return view('pengunjung/view2', ['nomor' => $nomorTampil , 'admin' => '1', 'jml_antrian' => $jml]);
     }
 
     public function panggilAdmin2()
     {
         $nomorTampil = app('App\Http\Controllers\AntrianController')->index();
         $jml = app('App\Http\Controllers\AntrianController')->jml_antrian();
-        return view('pengunjung/view2', ['nomor' => $nomorTampil , 'admin' => 'Admin 2', 'jml_antrian' => $jml]);
+        return view('pengunjung/view2', ['nomor' => $nomorTampil , 'admin' => '2', 'jml_antrian' => $jml]);
     }
 
     /**

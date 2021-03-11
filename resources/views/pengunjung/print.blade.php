@@ -10,10 +10,8 @@
 	<h1>{{ $nomor }}</h1>
 
 	<script type="text/javascript">
-		window.print()
-		window.close()
-		// kasih delay
-		window.open("http://127.0.0.1:8000/pengunjung")
+		print(); 
+		location="pengunjung"
 	</script>
 
 </body>
