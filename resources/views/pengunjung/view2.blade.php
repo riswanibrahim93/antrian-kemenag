@@ -52,7 +52,12 @@ else if($antrian > 20 && $antrian < 100){ ?>
 <?php 
 	}
 }
-?>
+else{?>
+	<audio id="antrian" src="{{ asset('audio/antrian/'.$antrian.'.wav') }}"></audio>
+<?php 
+}
+ ?>
+
 	
 <audio id="loket{{ $admin }}" src="{{ asset('audio/antrian/'.$admin.'.wav') }}"></audio>
 <audio id="sepuluh" src="{{ asset('audio/antrian/sepuluh.wav') }}"></audio>
