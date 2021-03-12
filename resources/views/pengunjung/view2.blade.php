@@ -10,25 +10,25 @@
 <?php
 $antrian = $nomor; 
 ?>
-<script type="text/javascript">
-	$(function(){
-		$("#play").click(function(){
-			document.getElementById('suarabel').play();
-			document.getElementById('suarabelnomorurut').play();
-			document.getElementById('suarabelsuarabelloket').play();
-		});
+<script type="text/javascript" src="{{ asset('js/setting_sound.js') }}">
+	// $(function(){
+	// 	$("#play").click(function(){
+	// 		document.getElementById('suarabel').play();
+	// 		document.getElementById('suarabelnomorurut').play();
+	// 		document.getElementById('suarabelsuarabelloket').play();
+	// 	});
 
-		$("#pause").click(function(){
-			document.getElementById("suarabel").pause();
-		});
+	// 	$("#pause").click(function(){
+	// 		document.getElementById("suarabel").pause();
+	// 	});
 
-		$("#stop").click(function(){
-			document.getElementById("suarabel").pause();
-			document.getElementById("suarabel").currentTime=0;
-		});
+	// 	$("#stop").click(function(){
+	// 		document.getElementById("suarabel").pause();
+	// 		document.getElementById("suarabel").currentTime=0;
+	// 	});
 
 
-	})
+	// })
 </script>
 <audio id="suarabel" src="{{ asset('audio/Airport_Bell.mp3') }}"></audio>
 <audio id="suarabelnomorurut" src="{{ asset('audio/antrian/nomor-urut.wav') }}"></audio> 
@@ -90,12 +90,12 @@ else if($antrian > 20 && $antrian < 100){ ?>
 		    	<div class="row">
 		    		<h3>Admin 1</h3>
 					<a href="/antrianA1" class="btn selanjutnya" type="submit"><i class="glyphicon glyphicon-play"></i> &nbsp;Antrian Selanjutnya</a>
-		    		<button class="btn panggil" onclick="panggil()"><i class="glyphicon glyphicon-bullhorn"></i> &nbsp;Panggil</button>
+		    		<button class="btn panggil" onclick="panggil('{{$antrian}}')"><i class="glyphicon glyphicon-bullhorn"></i> &nbsp;Panggil</button>
 		    	</div>
 		    	<div class="row">
 		    		<h3>Admin 2</h3>
 					<a href="/antrianA2" class="btn selanjutnya" type="submit"><i class="glyphicon glyphicon-play"></i> &nbsp;Antrian Selanjutnya</a>
-		    		<button class="btn panggil" onclick="panggil()"><i class="glyphicon glyphicon-bullhorn"></i> &nbsp;Panggil</button>
+		    		<button class="btn panggil" onclick="panggil('{{$antrian}}')"><i class="glyphicon glyphicon-bullhorn"></i> &nbsp;Panggil</button>
 		    	</div>
 		    </div>
 	  	</div>
@@ -114,8 +114,10 @@ else if($antrian > 20 && $antrian < 100){ ?>
 		    </div>
 	  	</div>
 	</div>
-	<script type="text/javascript">
-		function panggil(){
+	
+	<script type="text/javascript" >
+		function panggil(antrian){
+			var antrian = antrian
 			document.getElementById("suarabel").pause();
 			document.getElementById("suarabel").currentTime=0;
 			document.getElementById("suarabel").play();
@@ -130,26 +132,25 @@ else if($antrian > 20 && $antrian < 100){ ?>
 				document.getElementById("suarabelnomorurut").play();
 			}, totalWaktu);
 			totalWaktu=totalWaktu+1000;
-
-			<?php
-			if($antrian < 10){ ?>
-				setTimeout(function(){
+			if (antrian < 10) {
+			  setTimeout(function(){
 					document.getElementById("antrian").pause();
 					document.getElementById("antrian").currentTime=0;
 					document.getElementById("antrian").play();
 				}, totalWaktu);
 				totalWaktu=totalWaktu+1000;
-			<?php }
-			elseif($antrian == 10){ ?>
+			} 
+
+			else if (antrian == 10){ 
 				setTimeout(function(){
 					document.getElementById("sepuluh").pause();
 					document.getElementById("sepuluh").currentTime=0;
 					document.getElementById("sepuluh").play();
 				}, totalWaktu);
 				totalWaktu=totalWaktu+1000;
-			<?php }
+			}
 
-			elseif($antrian == 11){ ?>
+			else if(antrian == 11){ 
 				setTimeout(function(){
 					document.getElementById("sebelas").pause();
 					document.getElementById("sebelas").currentTime=0;
@@ -157,10 +158,9 @@ else if($antrian > 20 && $antrian < 100){ ?>
 				}, totalWaktu);
 				totalWaktu=totalWaktu+1000;
 			
-			<?php } 
+			} 
 
-			else if($antrian > 11 && $antrian < 20){ 
-				?>
+			else if(antrian > 11 && antrian < 20){ 
 				setTimeout(function(){
 					document.getElementById("antrian").pause();
 					document.getElementById("antrian").currentTime=0;
@@ -175,10 +175,9 @@ else if($antrian > 20 && $antrian < 100){ ?>
 				}, totalWaktu);
 				totalWaktu=totalWaktu+1000;
 			
-			<?php }
+			}
 
-			else if($antrian == 20){ 
-				?>
+			else if(antrian == 20){ 
 				setTimeout(function(){
 					document.getElementById("antrian").pause();
 					document.getElementById("antrian").currentTime=0;
@@ -193,9 +192,8 @@ else if($antrian > 20 && $antrian < 100){ ?>
 				}, totalWaktu);
 				totalWaktu=totalWaktu+1000;
 			
-			<?php }
-			else if($antrian > 20 && $antrian < 100){ 
-				?>
+			}
+			else if(antrian > 20 && antrian < 100){ 
 				setTimeout(function(){
 					document.getElementById("antrian").pause();
 					document.getElementById("antrian").currentTime=0;
@@ -216,9 +214,8 @@ else if($antrian > 20 && $antrian < 100){ ?>
 					document.getElementById("antrian1").play();
 				}, totalWaktu);
 				totalWaktu=totalWaktu+800;
-		<?php
-		}
-		?>
+			}
+		
 
 			totalwaktu=totalWaktu+1000;
 			setTimeout(function() {
