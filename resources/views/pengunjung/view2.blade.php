@@ -94,12 +94,12 @@ else{?>
 		    <div class="col-sm-4">
 		    	<div class="row">
 		    		<h3>Admin 1</h3>
-					<a href="/antrianA1" class="btn selanjutnya" type="submit"><i class="glyphicon glyphicon-play"></i> &nbsp;Antrian Selanjutnya</a>
+					<a href="/panggilAntrianA1" class="btn selanjutnya" type="submit"><i class="glyphicon glyphicon-play"></i> &nbsp;Antrian Selanjutnya</a>
 		    		<button class="btn panggil" onclick="panggil('{{$antrian}}')"><i class="glyphicon glyphicon-bullhorn"></i> &nbsp;Panggil</button>
 		    	</div>
 		    	<div class="row">
 		    		<h3>Admin 2</h3>
-					<a href="/antrianA2" class="btn selanjutnya" type="submit"><i class="glyphicon glyphicon-play"></i> &nbsp;Antrian Selanjutnya</a>
+					<a href="/panggilAntrianA2" class="btn selanjutnya" type="submit"><i class="glyphicon glyphicon-play"></i> &nbsp;Antrian Selanjutnya</a>
 		    		<button class="btn panggil" onclick="panggil('{{$antrian}}')"><i class="glyphicon glyphicon-bullhorn"></i> &nbsp;Panggil</button>
 		    	</div>
 		    </div>

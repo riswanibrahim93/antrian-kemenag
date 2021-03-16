@@ -22,11 +22,11 @@
 		    <div class="col-sm-4">
 		    	<div class="row">
 		    		
-		    		<a href="/antrianA1"><h3>Admin 1</h3></a>
+		    		<a href="/panggilAntrianA1"><h3>Admin 1</h3></a>
 		    	</div>
 		    	<div class="row">
 		    		
-		    		<a href="/antrianA2"><h3>Admin 2</h3></a>
+		    		<a href="/panggilAntrianA2"><h3>Admin 2</h3></a>
 		    	</div>
 		    </div>
 	  	</div>

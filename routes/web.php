@@ -30,7 +30,9 @@ Route::get('/pengunjunglagi', function () {
     return view('pengunjung/view2');
 });
 
-Route::get('/antrianA1', 'AntrianController@panggilAdmin1')->name('antrianA1');
-Route::get('/antrianA2', 'AntrianController@panggilAdmin2')->name('antrianA2');
+Route::get('/antrianA1', 'AntrianController@Admin1')->name('antrianA1');
+Route::get('/antrianA2', 'AntrianController@Admin2')->name('antrianA2');
+Route::get('/panggilAntrianA1', 'AntrianController@panggilAdmin1')->name('panggilantrianA1');
+Route::get('/panggilAntrianA2', 'AntrianController@panggilAdmin2')->name('panggilantrianA2');
 Route::post('/antrian', 'AntrianController@create')->name('antrian');
 Route::get('/reset', 'AntrianController@reset')->name('reset');
