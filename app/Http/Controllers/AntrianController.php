@@ -71,18 +71,24 @@ class AntrianController extends Controller
         $jml = app('App\Http\Controllers\AntrianController')->jml_antrian();
         return view('pengunjung/view2', ['nomor' => $nomorTampil , 'admin' => '2', 'jml_antrian' => $jml]);
     }
+    public function Pengunjung()
+    {
+        $nomorTampil = app('App\Http\Controllers\AntrianController')->tampil();
+        $jml = app('App\Http\Controllers\AntrianController')->jml_antrian();
+        return view('pengunjung/view', ['nomor' => $nomorTampil , 'jml_antrian' => $jml]);
+    }
     public function panggilAdmin1()
     {
         $nomorTampil = app('App\Http\Controllers\AntrianController')->index();
         $jml = app('App\Http\Controllers\AntrianController')->jml_antrian();
-        return redirect('/antrianA1');
+        return redirect('/adminA1');
     }
 
     public function panggilAdmin2()
     {
         $nomorTampil = app('App\Http\Controllers\AntrianController')->index();
         $jml = app('App\Http\Controllers\AntrianController')->jml_antrian();
-        return redirect('/antrianA2');
+        return redirect('/adminA2');
     }
 
     /**
