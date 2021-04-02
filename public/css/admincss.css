@@ -1,0 +1,18 @@
+.nav-link:hover{
+    background-color: grey;
+  }
+  .navigasi{
+    height: 800px;
+    position: fixed;
+    z-index: 1000;
+    background-color: #1f4d1f;
+  }
+  footer{
+
+    position:fixed;
+    bottom:0;
+    width:100%;
+  }
+  .navbar {
+    background-color: #00923f;
+  }
