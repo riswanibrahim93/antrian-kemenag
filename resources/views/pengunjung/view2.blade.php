@@ -1,34 +1,13 @@
-@extends('layouts/main_pengunjung')
+@extends('layouts/main')
 
-@section('title', 'Pengunjung Kemenag')
+@section('title', 'PTSP')
 @section('container')
-	<!-- @if (session('status'))
-	    <div class="alert alert-success">
-	        {{ session('status') }}
-	    </div>
-	@endif -->
+
 <?php
 $antrian = $nomor; 
 ?>
 <script type="text/javascript" src="{{ asset('js/setting_sound.js') }}">
-	// $(function(){
-	// 	$("#play").click(function(){
-	// 		document.getElementById('suarabel').play();
-	// 		document.getElementById('suarabelnomorurut').play();
-	// 		document.getElementById('suarabelsuarabelloket').play();
-	// 	});
 
-	// 	$("#pause").click(function(){
-	// 		document.getElementById("suarabel").pause();
-	// 	});
-
-	// 	$("#stop").click(function(){
-	// 		document.getElementById("suarabel").pause();
-	// 		document.getElementById("suarabel").currentTime=0;
-	// 	});
-
-
-	// })
 </script>
 <audio id="suarabel" src="{{ asset('audio/Airport_Bell.mp3') }}"></audio>
 <audio id="suarabelnomorurut" src="{{ asset('audio/antrian/nomor-urut.wav') }}"></audio> 
@@ -67,58 +46,49 @@ else{?>
 <audio id="puluh" src="{{ asset('audio/antrian/puluh.wav') }}"></audio>
 <audio id="ratus" src="{{ asset('audio/antrian/ratus.wav') }}"></audio>
 
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-4">
-		    	
-		    </div>
-		    <div class="col-sm-4">
-		    	
-		    </div>
-		    <div class="col-sm-4">
-    			<h4>Jumlah Antrian : {{ $jml_antrian }}</h4>
-		    </div>
-    	</div>
-    	<br>
-		<div class="row">
-		    <div class="col-sm-8">
-		    	<h1>
-	    			{{ $nomor }}
-		    	</h1>
-		    	<h6>Admin {{ $admin }}</h6>
-		    	<form action="/antrian" method="post" class="d-inline">
-					@csrf
-					<button type="submit"class="btn btn-danger mb-1">Antri</button>
-				</form>
-		    </div>
-		    <div class="col-sm-4">
-		    	<div class="row">
-		    		<h3>Admin 1</h3>
-					<a href="/panggilAntrianA1" class="btn selanjutnya" type="submit"><i class="glyphicon glyphicon-play"></i> &nbsp;Antrian Selanjutnya</a>
-		    		<button class="btn panggil" onclick="panggil('{{$antrian}}')"><i class="glyphicon glyphicon-bullhorn"></i> &nbsp;Panggil</button>
-		    	</div>
-		    	<div class="row">
-		    		<h3>Admin 2</h3>
-					<a href="/panggilAntrianA2" class="btn selanjutnya" type="submit"><i class="glyphicon glyphicon-play"></i> &nbsp;Antrian Selanjutnya</a>
-		    		<button class="btn panggil" onclick="panggil('{{$antrian}}')"><i class="glyphicon glyphicon-bullhorn"></i> &nbsp;Panggil</button>
-		    	</div>
-		    </div>
-	  	</div>
-	  	<br><br>
-	  	<hr>
-	  	<div class="row">
-		    <div class="col-sm-4">
-		    	
-		    </div>
-		    <div class="col-sm-4">
-		    	<h3>Antrian Berakhir</h3>
-	    		<a href="/reset">Submit</a>
-		    </div>
-		    <div class="col-sm-4">
-		    	
-		    </div>
-	  	</div>
-	</div>
+	<div class="bg-text-pengunjung">
+        <div class="card text-center">
+          <div class="card-header">
+            <h2>ADMIN {{ $admin }}</h2>
+          </div>
+          <div class="card-body">
+            <h3>Jumlah Antrian: <h3 id="jml"></h3></h3>
+            <h3>Nomor Antrian:</h3>
+            <h3 class="display-4 font-weight-bold" >{{ $nomor }}</h3>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-danger mr-3" onclick="panggil('{{$antrian}}')">Panggil Antrian</button>
+          	<a href="/panggilAntrianA1" class="btn btn-success mr-3">Antrian Berikutnya</a>
+          </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous">
+	</script>
+
+	<script type="text/javascript">
+	  $(document).ready(function() {
+	    selesai();
+	});
+	 
+	function selesai() {
+	  setTimeout(function() {
+	    update();
+	    selesai();
+	  }, 200);
+	}
+	 
+	function update() {
+	  $.getJSON("viewjml", function(data) {
+	    $.each(data, function(result, jml) {
+	      var hasil = jml
+	      document.getElementById("jml").innerHTML = hasil
+	    });
+	  });
+	}
+	</script>
 	
 	<script type="text/javascript" >
 		function panggil(antrian){

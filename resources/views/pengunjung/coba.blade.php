@@ -12,10 +12,14 @@
           </div>
           <div class="card-body">
             <h3>Nomor Antrian Anda:</h3>
-            <h3 class="display-4 font-weight-bold" >001</h3>
+            <h3 class="display-4 font-weight-bold" >{{ $nomor }}</h3>
           </div>
           <div class="card-footer">
-            <input class="btn btn-submit mr-3" type="submit" name="submit" value="Print">
+            <form action="/antrian" method="post" class="d-inline">
+              @csrf
+              <button type="submit"class="btn btn-submit mr-3">Print</button>
+            </form>
+            <!-- <input class="btn btn-submit mr-3" type="submit" name="submit" value="Print"> -->
           </div>
         </div>
       </div>

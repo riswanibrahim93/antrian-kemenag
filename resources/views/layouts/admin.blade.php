@@ -4,6 +4,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -22,12 +24,17 @@
       
         <form class="form-inline my-2 my-lg-0 ml-auto">
           <ul class="navbar-nav ml-auto ml-md-0">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="logout.php">Logout</a>
-                    </div>
-                </li>
+                <span class="navbar-text">
+                  <a href="{{ route('logout') }}"
+                     onclick="event.preventDefault();
+                                   document.getElementById('logout-form').submit();">
+                      {{ __('Logout') }}
+                  </a>
+
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                      @csrf
+                  </form>
+                </span>
             </ul>
         </form>
     </nav>
@@ -35,7 +42,7 @@
       <div class="col-md-2  pt-4 navigasi">
         <ul class="nav flex-column ml-3 mb-5">
           <li class="nav-item">
-            <a class="nav-link text-white" href="{{ asset('daftarpetugas') }}"><i class="fas  fa-user mr-2"></i> Daftar Petugas</a> <hr>
+            <a class="nav-link text-white" href="{{ asset('kelolaAdmin') }}"><i class="fas  fa-user mr-2"></i> Daftar Petugas</a> <hr>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white" href="{{ asset('rekappengunjung') }}"><i class="fas  fa-history mr-2"></i> Rekap Pengunjung</a> <hr>
@@ -51,6 +58,8 @@
       <a href="https://www.uin-malang.ac.id/" class="text-secondary">UIN Maulana Malik Ibrahim Malang</a>
       </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

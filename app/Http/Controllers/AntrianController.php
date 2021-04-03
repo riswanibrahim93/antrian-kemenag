@@ -14,37 +14,87 @@ class AntrianController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
         $a = DB::table('antrian_sementaras')->first();
+        $b = DB::table('antrians')->get();
+
         $nomorTampil;
+        $n = 0;
 
         if($a == null)
         {
-            $nomorTampil = "empty";
+            foreach ($b as $i) {
+                $n++;
+            }
+            if($n == 0){
+                $nomorTampil = 0;
+            }
+            else{
+                foreach ($b as $i) {
+                    $nomorTampil = $i->nomor;
+                }
+            }
         }
         else
         {
             $nomorTampil = $a->nomor;
-
+            // $nomorTampil -= 1;
             DB::table('antrian_sementaras')->where('nomor',$nomorTampil)->delete();
         }
+        // dd($nomorTampil);
         return $nomorTampil;
     }
 
     public function tampil()
     {
         $a = DB::table('antrian_sementaras')->first();
+        $b = DB::table('antrians')->get();
+
         $nomorTampil;
+        $n = 0;
 
         if($a == null)
         {
-            $nomorTampil = "empty";
+            foreach ($b as $i) {
+                $n++;
+            }
+            if($n == 0){
+                $nomorTampil = 0;
+            }
+            else{
+                foreach ($b as $i) {
+                    $nomorTampil = $i->nomor;
+                }
+            }
         }
         else
         {
             $nomorTampil = $a->nomor;
+            $nomorTampil -= 1;
+        }
+        return $nomorTampil;
+    }
 
+    public function tampilAkhir()
+    {
+        $a = DB::table('antrians')->get();
+        $n = 0;
+        foreach ($a as $i) {
+            $n++;
+        }
+
+        if($n == 0)
+        {
+            $nomorTampil = 1;
+        }
+        else
+        {
+            foreach ($a as $i) {
+                $nomorTampil = $i->nomor;
+            }
+            $nomorTampil += 1;
         }
         return $nomorTampil;
     }
@@ -56,39 +106,80 @@ class AntrianController extends Controller
         foreach ($a as $i) {
             $jml++;
         }
+        // $jml -= 1;
+
+        // if($jml<0)
+        // {
+        //     $jml=0;
+        // }
         return $jml;
     }
+
+    // public function viewAntrian()
+    // {
+    //     $nomorTampil = app('App\Http\Controllers\AntrianController')->tampil();
+    //     return view('pengunjung/updateantrian', ['nomor' => $nomorTampil]);
+    // }
 
     public function Admin1()
     {
         $nomorTampil = app('App\Http\Controllers\AntrianController')->tampil();
-        $jml = app('App\Http\Controllers\AntrianController')->jml_antrian();
-        return view('pengunjung/view2', ['nomor' => $nomorTampil , 'admin' => '1', 'jml_antrian' => $jml]);
+        return view('pengunjung/view2', ['nomor' => $nomorTampil , 'admin' => '1']);
     }
     public function Admin2()
     {
         $nomorTampil = app('App\Http\Controllers\AntrianController')->tampil();
-        $jml = app('App\Http\Controllers\AntrianController')->jml_antrian();
-        return view('pengunjung/view2', ['nomor' => $nomorTampil , 'admin' => '2', 'jml_antrian' => $jml]);
+        return view('pengunjung/view2', ['nomor' => $nomorTampil , 'admin' => '2']);
     }
-    public function Pengunjung()
-    {
-        $nomorTampil = app('App\Http\Controllers\AntrianController')->tampil();
-        $jml = app('App\Http\Controllers\AntrianController')->jml_antrian();
-        return view('pengunjung/view', ['nomor' => $nomorTampil , 'jml_antrian' => $jml]);
-    }
+    
+
     public function panggilAdmin1()
     {
         $nomorTampil = app('App\Http\Controllers\AntrianController')->index();
-        $jml = app('App\Http\Controllers\AntrianController')->jml_antrian();
+        DB::table('admin_panggils')
+              ->where('id', 1)
+              ->update(['loket' => 1]);
         return redirect('/adminA1');
     }
 
     public function panggilAdmin2()
     {
         $nomorTampil = app('App\Http\Controllers\AntrianController')->index();
-        $jml = app('App\Http\Controllers\AntrianController')->jml_antrian();
+        DB::table('admin_panggils')
+              ->where('id', 1)
+              ->update(['loket' => 2]);
         return redirect('/adminA2');
+    }
+
+    public function Pengunjung()
+    {
+        $nomorTampil = app('App\Http\Controllers\AntrianController')->tampilAkhir();
+        return view('pengunjung/coba', ['nomor' => $nomorTampil]);
+
+    }
+
+    public function ViewNomor()
+    {
+        $nomorTampil = app('App\Http\Controllers\AntrianController')->tampil();
+        // $nomorTampil -= 1;
+        $nomorTampil = json_encode(array("nomor" => $nomorTampil));
+        echo $nomorTampil;
+    }
+    public function ViewAdmin()
+    {
+        $admin = DB::table('admin_panggils')->get();
+        // $admin = json_encode(array("admin" => $admin));
+        foreach ($admin as $i) {
+            $admin = $i->loket;
+        }
+        $admin = json_encode(array("admin" => $admin));
+        echo $admin;
+    }
+    public function ViewJml()
+    {
+        $jml = app('App\Http\Controllers\AntrianController')->jml_antrian();
+        $jml = json_encode(array("jml" => $jml));
+        echo $jml;
     }
 
     /**
@@ -141,7 +232,13 @@ class AntrianController extends Controller
         DB::table('antrians')->delete();
         DB::table('antrian_sementaras')->delete();
 
-        return redirect('/pengunjung')->with('status', 'Antrian berakhir, total antrian hari ini '.$nomor_lama);
+        return redirect('/rekappengunjung')->with('status', 'Antrian berakhir, total antrian hari ini '.$nomor_lama);
+    }
+
+    public function historiAntrian()
+    {
+        $histori = HistoriAntrian::all();
+        return view('petugas/rekap', ['histori' => $histori]);
     }
 
     /**
