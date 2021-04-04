@@ -17,26 +17,30 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light  fixed-top">
+
+
       <a class="navbar-brand" href="#" >
         <img src="../img/Logo_kemenag.png" alt="Logo" style="width:40px;">
       </a>
       <a class="navbar-brand text-white" href="#" >KEMENTRIAN AGAMA KABUPATEN TRENGGALEK</a>
-      
-        <form class="form-inline my-2 my-lg-0 ml-auto">
-          <ul class="navbar-nav ml-auto ml-md-0">
+      <!-- <form class="form-inline my-2 my-lg-0 ml-auto"> -->
+          <!-- <ul class="nav justify-content-end"> -->
+                <form class="form-inline my-2 my-lg-0 ml-auto" id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                 <span class="navbar-text">
-                  <a href="{{ route('logout') }}"
+                  <a class="text-center" href="{{ route('logout') }}"
                      onclick="event.preventDefault();
                                    document.getElementById('logout-form').submit();">
                       {{ __('Logout') }}
                   </a>
 
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                  
+                </span>
                       @csrf
                   </form>
-                </span>
-            </ul>
-        </form>
+            <!-- </ul> -->
+        <!-- </form> -->
+      
+        
     </nav>
     <div class="row no-gutters mt-5">
       <div class="col-md-2  pt-4 navigasi">

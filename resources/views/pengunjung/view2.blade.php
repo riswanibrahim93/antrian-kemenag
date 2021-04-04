@@ -1,10 +1,11 @@
-@extends('layouts/main')
+@extends('layouts/mainAdmin')
 
 @section('title', 'PTSP')
 @section('container')
 
 <?php
 $antrian = $nomor; 
+echo $antrian;
 ?>
 <script type="text/javascript" src="{{ asset('js/setting_sound.js') }}">
 
@@ -54,43 +55,31 @@ else{?>
           <div class="card-body">
             <h3>Jumlah Antrian: <b id="jml"></b></h3>
             <h3>Nomor Antrian:</h3>
-            <h3 class="display-4 font-weight-bold" >{{ $nomor }}</h3>
+            <h3 class="display-4 font-weight-bold" id="nomor"></h3>
           </div>
           <div class="card-footer">
             <button class="btn btn-danger mr-3" onclick="panggil('{{$antrian}}')">Panggil Antrian</button>
-          	<a href="/panggilAntrianA1" class="btn btn-success mr-3">Antrian Berikutnya</a>
+            <?php 
+            	if($admin == "1")
+            	{
+         	?>
+            		<a href="/panggilAntrianA1" class="btn btn-success mr-3">Antrian Berikutnya</a>		
+            <?php 
+            	}
+            	else
+            	{
+          	?>
+            		<a href="/panggilAntrianA2" class="btn btn-success mr-3">Antrian Berikutnya</a>
+          	<?php 
+            	}
+           	?>
+           
+          	
           </div>
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-	crossorigin="anonymous">
-	</script>
-
-	<script type="text/javascript">
-	  $(document).ready(function() {
-	    selesai();
-	});
-	 
-	function selesai() {
-	  setTimeout(function() {
-	    update();
-	    selesai();
-	  }, 200);
-	}
-	 
-	function update() {
-	  $.getJSON("viewjml", function(data) {
-	    $.each(data, function(result, jml) {
-	      var hasil = jml
-	      document.getElementById("jml").innerHTML = hasil
-	    });
-	  });
-	}
-	</script>
-	
-	<script type="text/javascript" >
+    <script type="text/javascript" >
 		function panggil(antrian){
 			var antrian = antrian
 			document.getElementById("suarabel").pause();
@@ -105,6 +94,7 @@ else{?>
 				document.getElementById("suarabelnomorurut").pause()
 				;document.getElementById("suarabelnomorurut").currentTime=0;
 				document.getElementById("suarabelnomorurut").play();
+				console.log(document.getElementById("suarabelnomorurut"))
 			}, totalWaktu);
 			totalWaktu=totalWaktu+1000;
 			if (antrian < 10) {
@@ -112,6 +102,7 @@ else{?>
 					document.getElementById("antrian").pause();
 					document.getElementById("antrian").currentTime=0;
 					document.getElementById("antrian").play();
+					console.log(document.getElementById("antrian"))
 				}, totalWaktu);
 				totalWaktu=totalWaktu+1000;
 			} 
@@ -140,6 +131,7 @@ else{?>
 					document.getElementById("antrian").pause();
 					document.getElementById("antrian").currentTime=0;
 					document.getElementById("antrian").play();
+					console.log(document.getElementById("antrian"))
 				}, totalWaktu);
 				totalWaktu=totalWaktu+1000;
 
@@ -197,6 +189,7 @@ else{?>
 							document.getElementById('diloket').pause();
 							document.getElementById('diloket').currentTime=0;
 							document.getElementById('diloket').play();
+							console.log(document.getElementById("diloket"))
 						}, totalwaktu);
 			
 			totalwaktu=totalwaktu+1000;
@@ -208,4 +201,39 @@ else{?>
 		}
 
 	</script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous">
+	</script>
+
+	<script type="text/javascript">
+	  $(document).ready(function() {
+	    selesai();
+	});
+	 
+	function selesai() {
+	  setTimeout(function() {
+	    update();
+	    selesai();
+	  }, 200);
+	}
+	 
+	function update() {
+	  $.getJSON("viewjml", function(data) {
+	    $.each(data, function(result, jml) {
+	      var hasil = jml
+	      document.getElementById("jml").innerHTML = hasil
+	    });
+	  });
+	  $.getJSON("viewnomor", function(data) {
+	    $.each(data, function(result, nomor) {
+	      var hasil = nomor
+	      document.getElementById("nomor").innerHTML = hasil
+	    });
+	  });
+	}
+	</script>
+	
+	
 @endsection
