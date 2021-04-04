@@ -11,8 +11,16 @@
                 {{ session('status') }}
             </div>
         @endif
-        <h6>ANTRIAN BERAKHIR</h6>
-          <a href="/reset" class="btn btn-info">Submit</a>
+        <!-- <h6 class="text-right">ANTRIAN BERAKHIR</h6> -->
+        <div class="row">
+        <div class="col-md-8">
+        </div>
+        <div align="right" class="col-md-4">
+        <a href="/reset" class="btn btn-danger mb-2 btn-sm">Antrian Berakhir</a>
+        <p class="small text-secondary  ">*)Apabila antrian berakhir, klik tombol "Antrian Berakhir" untuk meresest dan menyimpan riwayat antrian </p>
+        </div>
+        </div>
+          
         <table class="table table-striped table-bordered">
           <thead>
             <tr>

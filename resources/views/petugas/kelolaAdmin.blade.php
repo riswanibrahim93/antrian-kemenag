@@ -42,8 +42,7 @@
           <td>
             <!-- <a href="" class="btn btn-info">Ubah</a> -->
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal{{ $b->nip }}">
-              Ubah
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal{{ $b->nip }}"> <i class="far fa-edit bg-success text-white rounded"></i>
             </button>
 
             <!-- Modal -->
@@ -97,7 +96,7 @@
             <form action="kelolaAdmin/{{ $b->nip }}" method="post" class="d-inline">
               @method('delete')
               @csrf
-              <button type="submit"class="btn btn-danger">Hapus</button>
+              <button type="submit"class="btn btn-danger"><i class="fas fa-trash-alt bg-danger text-white rounded"></i></button>
             </form>
           </td>
         </tr>

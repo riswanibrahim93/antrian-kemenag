@@ -52,7 +52,7 @@ else{?>
             <h2>ADMIN {{ $admin }}</h2>
           </div>
           <div class="card-body">
-            <h3>Jumlah Antrian: <h3 id="jml"></h3></h3>
+            <h3>Jumlah Antrian: <b id="jml"></b></h3>
             <h3>Nomor Antrian:</h3>
             <h3 class="display-4 font-weight-bold" >{{ $nomor }}</h3>
           </div>
@@ -98,7 +98,7 @@ else{?>
 			document.getElementById("suarabel").play();
 
 			//set delay
-			totalWaktu = document.getElementById("suarabel").duration*1000;
+			totalWaktu = document.getElementById("suarabel").duration*800;
 
 			//playnomerurutnya
 			setTimeout(function(){

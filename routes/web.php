@@ -47,9 +47,9 @@ Route::get('/menu', function () {
 // Route::get('/edits', function () {
 //     return view('petugas/edit_petugas');
 // });
-// Route::get('/tambah', function () {
-//     return view('petugas/tambah_petugas');
-// });
+Route::get('/tambah', function () {
+    return view('petugas/tambah_petugas');
+});
 // Route::get('/login', function () {
 //     return view('petugas/login');
 // });
