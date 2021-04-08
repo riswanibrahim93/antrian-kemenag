@@ -35,7 +35,7 @@
    
       @yield('container')
       </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <footer class="bg-success">
       <div class="text-center p-2 text-white" style="background-color: rgba(0, 0, 0, 0.2); ">
       © 2021 Copyright:

@@ -40,10 +40,8 @@ class AntrianController extends Controller
         else
         {
             $nomorTampil = $a->nomor;
-            // $nomorTampil -= 1;
             DB::table('antrian_sementaras')->where('nomor',$nomorTampil)->delete();
         }
-        // dd($nomorTampil);
         return $nomorTampil;
     }
 
@@ -106,20 +104,9 @@ class AntrianController extends Controller
         foreach ($a as $i) {
             $jml++;
         }
-        // $jml -= 1;
-
-        // if($jml<0)
-        // {
-        //     $jml=0;
-        // }
         return $jml;
     }
 
-    // public function viewAntrian()
-    // {
-    //     $nomorTampil = app('App\Http\Controllers\AntrianController')->tampil();
-    //     return view('pengunjung/updateantrian', ['nomor' => $nomorTampil]);
-    // }
 
     public function Admin1()
     {
@@ -161,14 +148,12 @@ class AntrianController extends Controller
     public function ViewNomor()
     {
         $nomorTampil = app('App\Http\Controllers\AntrianController')->tampil();
-        // $nomorTampil -= 1;
         $nomorTampil = json_encode(array("nomor" => $nomorTampil));
         echo $nomorTampil;
     }
     public function ViewAdmin()
     {
         $admin = DB::table('admin_panggils')->get();
-        // $admin = json_encode(array("admin" => $admin));
         foreach ($admin as $i) {
             $admin = $i->loket;
         }
